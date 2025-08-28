@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Checkout - CozaStore</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+	<style>
+		/* Checkout styling to match cart page */
+		.checkout-container {
+			background: #f7f7f7;
+			min-height: 100vh;
+			padding: 20px 0;
+		}
+
+		.checkout-card {
+			background: white;
+			border-radius: 0;
+			box-shadow: none;
+			overflow: hidden;
+		}
+
+		.checkout-header {
+			background: #222;
+			color: white;
+			padding: 30px;
+			text-align: center;
+		}
+
+		.checkout-header h1 {
+			margin: 0;
+			font-size: 2.5rem;
+			font-weight: 300;
+		}
+
+		.checkout-header p {
+			margin: 10px 0 0 0;
+			opacity: 0.9;
+		}
+
+		.form-section {
+			padding: 30px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.form-section:last-child {
+			border-bottom: none;
+		}
+
+		.section-title {
+			font-size: 1.5rem;
+			color: #333;
+			margin-bottom: 25px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #222;
+			display: inline-block;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			font-weight: 600;
+			color: #555;
+			margin-bottom: 8px;
+			display: block;
+		}
+
+		.form-control {
+			border: 1px solid #e1e5e9;
+			border-radius: 0;
+			padding: 12px 15px;
+			font-size: 16px;
+			transition: all 0.3s ease;
+		}
+
+		.form-control:focus {
+			border-color: #222;
+			box-shadow: none;
+			outline: none;
+		}
+
+		.form-control.error {
+			border-color: #e74c3c;
+		}
+
+		.error-message {
+			color: #e74c3c;
+			font-size: 14px;
+			margin-top: 5px;
+			display: none;
+		}
+
+		.cart-item {
+			display: flex;
+			align-items: center;
+			padding: 15px 0;
+			border-bottom: 1px solid #eee;
+		}
+
+		.cart-item:last-child {
+			border-bottom: none;
+		}
+
+		.cart-item-img {
+			width: 60px;
+			height: 60px;
+			object-fit: cover;
+			border-radius: 0;
+			margin-right: 15px;
+		}
+
+		.cart-item-details {
+			flex: 1;
+		}
+
+		.cart-item-name {
+			font-weight: 600;
+			color: #333;
+			margin-bottom: 5px;
+		}
+
+		.cart-item-price {
+			color: #222;
+			font-weight: 600;
+		}
+
+		.cart-item-qty {
+			color: #666;
+			font-size: 14px;
+		}
+
+		.order-summary {
+			background: #f8f9fa;
+			border-radius: 0;
+			padding: 20px;
+		}
+
+		.summary-row {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.summary-row:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+			font-weight: 700;
+			font-size: 1.2rem;
+			color: #222;
+		}
+
+		.btn-checkout {
+			background: #222;
+			border: none;
+			color: white;
+			padding: 15px 30px;
+			border-radius: 25px;
+			font-size: 18px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.btn-checkout:hover {
+			background: #333;
+			transform: none;
+			box-shadow: none;
+		}
+
+		.btn-checkout:disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+			transform: none;
+		}
+
+		.btn-back {
+			background: #6c757d;
+			border: none;
+			color: white;
+			padding: 12px 25px;
+			border-radius: 25px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-right: 15px;
+		}
+
+		.btn-back:hover {
+			background: #5a6268;
+		}
+
+		.progress-bar {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 30px;
+		}
+
+		.progress-step {
+			display: flex;
+			align-items: center;
+			margin: 0 15px;
+		}
+
+		.progress-circle {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background: #e1e5e9;
+			color: #666;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 600;
+			margin-right: 10px;
+		}
+
+		.progress-step.active .progress-circle {
+			background: #222;
+			color: white;
+		}
+
+		.progress-step.completed .progress-circle {
+			background: #28a745;
+			color: white;
+		}
+
+		.shipping-option {
+			border: 1px solid #e1e5e9;
+			border-radius: 0;
+			padding: 15px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.shipping-option:hover {
+			border-color: #222;
+		}
+
+		.shipping-option.selected {
+			border-color: #222;
+			background: rgba(34, 34, 34, 0.05);
+		}
+
+		.shipping-option input[type="radio"] {
+			margin-right: 10px;
+		}
+
+		/* Match cart page styling */
+		.bor8 {
+			border: 1px solid #e1e5e9;
+		}
+
+		.bg0 {
+			background-color: #fff;
+		}
+
+		.stext-111 {
+			font-family: Poppins-Regular;
+			font-size: 15px;
+			line-height: 1.466667;
+		}
+
+		.cl8 {
+			color: #888;
+		}
+
+		.plh3 {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		.size-111 {
+			width: 100%;
+			height: 50px;
+		}
+
+		.p-lr-15 {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		.m-b-12 {
+			margin-bottom: 12px;
+		}
+
+		.m-b-22 {
+			margin-bottom: 22px;
+		}
+
+		.flex-c-m {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.stext-101 {
+			font-family: Poppins-Regular;
+			font-size: 15px;
+			line-height: 1.466667;
+		}
+
+		.cl2 {
+			color: #222;
+		}
+
+		.size-115 {
+			width: 100%;
+			height: 50px;
+		}
+
+		.bg8 {
+			background-color: #222;
+		}
+
+		.bor13 {
+			border: 1px solid #222;
+		}
+
+		.hov-btn3 {
+			transition: all 0.4s;
+		}
+
+		.hov-btn3:hover {
+			background-color: #333;
+		}
+
+		.trans-04 {
+			transition: all 0.4s;
+		}
+
+		.pointer {
+			cursor: pointer;
+		}
+
+		/* Fix Select2 dropdown visibility */
+		.select2-container {
+			z-index: 99999 !important;
+		}
+
+		.select2-dropdown {
+			z-index: 99999 !important;
+		}
+
+		/* Ensure payment method dropdown is visible */
+		.form-section {
+			position: relative;
+			z-index: 1;
+		}
+
+		/* Payment method section specific styling */
+		.form-section:last-child {
+			z-index: 10;
+		}
+
+		/* Payment method dropdown container */
+		#paymentMethod {
+			position: relative;
+			z-index: 100;
+		}
+
+		/* Ensure dropdown appears above everything */
+		.select2-container--open {
+			z-index: 999999 !important;
+		}
+
+		/* Fix dropdown positioning */
+		.select2-results {
+			max-height: 200px;
+			overflow-y: auto;
+		}
+
+		@media (max-width: 768px) {
+			.checkout-header h1 {
+				font-size: 2rem;
+			}
+
+			.form-section {
+				padding: 20px;
+			}
+
+			.progress-step {
+				margin: 0 5px;
+			}
+
+			.progress-circle {
+				width: 30px;
+				height: 30px;
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-25">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-25" href="login.html">
+							My Account
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="index.html" class="logo">
+						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="index.html">Home</a>
+							</li>
+
+							<li>
+								<a href="product.html">Shop</a>
+							</li>
+
+							<li>
+								<a href="about.html">About</a>
+							</li>
+
+							<li>
+								<a href="contact.html">Contact</a>
+							</li>
+						</ul>
+					</div>	
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</a>
+						<a href="wishlist.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-wishlist" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</a>
+
+				<a href="wishlist.html" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-15">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-15">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-20" href="login.html">
+							My Account
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+
+				<li>
+					<a href="product.html">Shop</a>
+				</li>
+
+				<li>
+					<a href="about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Checkout Container -->
+	<div class="checkout-container">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
+					<div class="checkout-card">
+						<!-- Checkout Header -->
+						<div class="checkout-header">
+							<h1>Checkout</h1>
+							<p>Complete your purchase securely</p>
+						</div>
+
+						<!-- Progress Bar -->
+						<div class="progress-bar">
+							<div class="progress-step completed">
+								<div class="progress-circle">1</div>
+								<span>Cart</span>
+							</div>
+							<div class="progress-step active">
+								<div class="progress-circle">2</div>
+								<span>Checkout</span>
+							</div>
+							<div class="progress-step">
+								<div class="progress-circle">3</div>
+								<span>Confirmation</span>
+							</div>
+						</div>
+
+						<form id="checkoutForm">
+							<div class="row">
+								<!-- Left Column - Form -->
+								<div class="col-lg-8">
+									<!-- Shipping Information -->
+									<div class="form-section">
+										<h3 class="section-title">Shipping Information</h3>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label">First Name *</label>
+													<input type="text" class="form-control" id="firstName"
+														name="firstName" required>
+													<div class="error-message" id="firstNameError">Please enter your
+														first name</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label">Last Name *</label>
+													<input type="text" class="form-control" id="lastName"
+														name="lastName" required>
+													<div class="error-message" id="lastNameError">Please enter your last
+														name</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Email Address *</label>
+											<input type="email" class="form-control" id="email" name="email" required>
+											<div class="error-message" id="emailError">Please enter a valid email
+												address</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Phone Number *</label>
+											<input type="tel" class="form-control" id="phone" name="phone"
+												placeholder="601X XXX XXXX" required>
+											<div class="error-message" id="phoneError">Please enter a valid phone number
+												in format: 601X XXX XXXX</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Address Line 1 *</label>
+											<input type="text" class="form-control" id="address1" name="address1"
+												required>
+											<div class="error-message" id="address1Error">Please enter your address
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Address Line 2</label>
+											<input type="text" class="form-control" id="address2" name="address2">
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label">City *</label>
+													<input type="text" class="form-control" id="city" name="city"
+														required>
+													<div class="error-message" id="cityError">Please enter your city
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="form-label">State *</label>
+													<input type="text" class="form-control" id="state" name="state"
+														required>
+													<div class="error-message" id="stateError">Please enter your state
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Postal Code *</label>
+											<input type="text" class="form-control" id="postcode" name="postcode"
+												required>
+											<div class="error-message" id="postcodeError">Please enter your postal code
+											</div>
+										</div>
+									</div>
+
+
+
+									<!-- Payment Method -->
+									<div class="form-section">
+										<h3 class="section-title">Payment Method</h3>
+
+										<div class="form-group">
+											<label class="form-label">Payment Method *</label>
+											<select class="form-control" id="paymentMethod" name="paymentMethod"
+												required>
+												<option value="">Select payment method</option>
+												<option value="credit_card">Credit Card</option>
+												<option value="paypal">PayPal</option>
+												<option value="bank_transfer">Bank Transfer</option>
+												<option value="cash_on_delivery">Cash on Delivery</option>
+											</select>
+											<div class="error-message" id="paymentMethodError">Please select a payment
+												method</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Right Column - Order Summary -->
+								<div class="col-lg-4">
+									<div class="form-section">
+										<h3 class="section-title">Order Summary</h3>
+
+										<!-- Cart Items -->
+										<div id="cartItems">
+											<!-- Cart items will be populated here -->
+										</div>
+
+										<!-- Order Summary -->
+										<div class="order-summary">
+											<div class="summary-row">
+												<span>Subtotal:</span>
+												<span id="subtotal">RM 0.00</span>
+											</div>
+										
+											<div class="summary-row">
+												<span>Tax:</span>
+												<span id="tax">RM 0.00</span>
+											</div>
+											<div class="summary-row">
+												<span>Total:</span>
+												<span id="total">RM 0.00</span>
+											</div>
+										</div>
+
+										<!-- Action Buttons -->
+										<button type="button" class="btn-back" id="backToCart">
+											<i class="fa fa-arrow-left"></i> Back to Cart
+										</button>
+
+										<button type="submit" class="btn-checkout" id="placeOrder">
+											<i class="fa fa-lock"></i> Place Order
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="women">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="men">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="accessories">
+								Accessories
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="order-tracking.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="refund.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Refund
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="checkout.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="help-faq.html" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at Jalan Universiti, Bandar Barat, 31900 Kampar, Perak
+					</p>
+
+					<div class="p-t-27">
+						<a href="https://www.facebook.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://www.instagram.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="https://www.pinterest.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Store Information
+					</h4>
+
+					<div class="stext-107 cl7 size-201">
+						<p><strong>Opening Hours:</strong></p>
+						<p>Mon-Fri: 9AM - 9PM</p>
+						<p>Sat-Sun: 10AM - 8PM</p>
+						<p class="p-t-10"><strong>Contact:</strong></p>
+						<p>Email: wab@gmail.com</p>
+						<p>Phone: 05-468 8888</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/cart.js"></script>
+	<script src="js/wishlist.js"></script>
+
+	<script>
+		// Enhanced checkout functionality
+		document.addEventListener('DOMContentLoaded', function () {
+			// Initialize Select2
+			$(".js-select2").each(function () {
+				$(this).select2({
+					minimumResultsForSearch: 20,
+					dropdownParent: $(this).next('.dropDownSelect2')
+				});
+			});
+
+			// Initialize checkout
+			initializeCheckout();
+
+			// Setup event listeners
+			setupEventListeners();
+
+			// Load cart data
+			loadCartData();
+		});
+
+		// Global variables
+		let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+		function initializeCheckout() {
+			// Update cart counter
+			updateCartCounter();
+		}
+
+		function setupEventListeners() {
+			// Form validation
+			const form = document.getElementById('checkoutForm');
+			const inputs = form.querySelectorAll('input[required], select[required]');
+
+			inputs.forEach(input => {
+				input.addEventListener('blur', validateField);
+				input.addEventListener('input', clearError);
+			});
+
+			// Phone number formatting
+			const phoneInput = document.getElementById('phone');
+			if (phoneInput) {
+				phoneInput.addEventListener('input', formatPhoneNumber);
+			}
+
+			// Form submission
+			form.addEventListener('submit', handleOrderSubmission);
+
+			// Back to cart button
+			document.getElementById('backToCart').addEventListener('click', function () {
+				window.location.href = 'shopping-cart.html';
+			});
+		}
+
+		function loadCartData() {
+			const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
+			if (cartData.length === 0) {
+				// Redirect to cart if empty
+				window.location.href = 'shopping-cart.html';
+				return;
+			}
+
+			// Display cart items
+			displayCartItems(cartData);
+
+			// Load shipping and total info from cart page
+			loadCheckoutInfo();
+		}
+
+		function loadCheckoutInfo() {
+			const checkoutInfo = JSON.parse(localStorage.getItem('checkoutInfo')) || {};
+			const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+			const subtotal = cartData.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+			// Use stored shipping info or default to 0
+			const shippingFee = checkoutInfo.shippingFee || 0;
+			const tax = subtotal * 0.06; // 6% tax
+			const total = subtotal + shippingFee + tax;
+
+			// Set region if available
+			if (checkoutInfo.region) {
+				const regionSelect = document.getElementById('regionSelect');
+				if (regionSelect) {
+					regionSelect.value = checkoutInfo.region;
+					// Trigger Select2 update
+					$(regionSelect).trigger('change');
+				}
+			}
+
+			document.getElementById('subtotal').textContent = `RM ${subtotal.toFixed(2)}`;
+
+			document.getElementById('tax').textContent = `RM ${tax.toFixed(2)}`;
+			document.getElementById('total').textContent = `RM ${total.toFixed(2)}`;
+		}
+
+		function displayCartItems(cartData) {
+			const cartItemsContainer = document.getElementById('cartItems');
+			let html = '';
+
+			cartData.forEach(item => {
+				html += `
+					<div class="cart-item">
+						<img src="${item.img || 'images/product-01.jpg'}" alt="${item.name}" class="cart-item-img">
+						<div class="cart-item-details">
+							<div class="cart-item-name">${item.name}</div>
+							<div class="cart-item-price">RM ${item.price.toFixed(2)}</div>
+							<div class="cart-item-qty">Qty: ${item.qty}</div>
+						</div>
+					</div>
+				`;
+			});
+
+			cartItemsContainer.innerHTML = html;
+		}
+
+		function formatPhoneNumber(event) {
+			let value = event.target.value.replace(/\D/g, ''); // Remove non-digits
+
+			// Format as 601X XXX XXXX
+			if (value.length > 0) {
+				if (value.startsWith('601')) {
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else if (value.startsWith('60')) {
+					value = '601' + value.substring(2);
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else if (value.startsWith('0')) {
+					value = '601' + value.substring(1);
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else {
+					value = '601' + value;
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				}
+			}
+
+			event.target.value = value;
+		}
+
+		function validateField(event) {
+			const field = event.target;
+			const value = field.value.trim();
+			const errorElement = document.getElementById(field.id + 'Error');
+
+			let isValid = true;
+			let errorMessage = '';
+
+			// Remove error styling
+			field.classList.remove('error');
+			errorElement.style.display = 'none';
+
+			// Validation rules
+			switch (field.id) {
+				case 'firstName':
+				case 'lastName':
+					if (value.length < 2) {
+						isValid = false;
+						errorMessage = 'Name must be at least 2 characters long';
+					}
+					break;
+				case 'email':
+					const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+					if (!emailRegex.test(value)) {
+						isValid = false;
+						errorMessage = 'Please enter a valid email address';
+					}
+					break;
+				case 'phone':
+					// Malaysian phone number format: 601X XXX XXXX
+					const phoneRegex = /^601\d{1,2} \d{3} \d{4}$/;
+					if (!phoneRegex.test(value)) {
+						isValid = false;
+						errorMessage = 'Please enter a valid phone number in format: 601X XXX XXXX';
+					}
+					break;
+				case 'address1':
+				case 'city':
+				case 'state':
+					if (value.length < 3) {
+						isValid = false;
+						errorMessage = 'This field is required';
+					}
+					break;
+				case 'postcode':
+					if (value.length < 4) {
+						isValid = false;
+						errorMessage = 'Please enter a valid postal code';
+					}
+					break;
+			}
+
+			if (!isValid) {
+				field.classList.add('error');
+				errorElement.textContent = errorMessage;
+				errorElement.style.display = 'block';
+			}
+
+			return isValid;
+		}
+
+		function clearError(event) {
+			const field = event.target;
+			const errorElement = document.getElementById(field.id + 'Error');
+
+			field.classList.remove('error');
+			errorElement.style.display = 'none';
+		}
+
+		function handleOrderSubmission(event) {
+			event.preventDefault();
+
+			// Validate all required fields
+			const form = event.target;
+			const requiredFields = form.querySelectorAll('input[required], select[required]');
+			let isValid = true;
+
+			requiredFields.forEach(field => {
+				if (!validateField({ target: field })) {
+					isValid = false;
+				}
+			});
+
+			if (!isValid) {
+				alert('Please fill in all required fields correctly.');
+				return;
+			}
+
+			// Store order information
+			const orderInfo = {
+				customerName: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+				customerEmail: document.getElementById('email').value,
+				customerPhone: document.getElementById('phone').value,
+				customerAddress: document.getElementById('address1').value + ', ' +
+					document.getElementById('city').value + ', ' +
+					document.getElementById('state').value + ' ' +
+					document.getElementById('postcode').value,
+				paymentMethod: document.getElementById('paymentMethod').value
+			};
+			localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+
+			// Disable submit button
+			const submitBtn = document.getElementById('placeOrder');
+			submitBtn.disabled = true;
+			submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+
+			// Simulate order processing
+			setTimeout(() => {
+				// Show success message (SweetAlert for consistency with product add-to-cart)
+				swal('Order Confirmed!', 'Thank you for your purchase.', 'success')
+					.then(() => {
+						// Redirect to order confirmation page
+						window.location.href = 'order-confirmation.html';
+					});
+			}, 2000);
+		}
+	</script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const loggedInUser = localStorage.getItem("loggedInUser");
+			document.querySelectorAll(".myAccountLink").forEach(link => {
+				if (loggedInUser) {
+					link.setAttribute("href", "customer-loyalty.html");
+				} else {
+					link.setAttribute("href", "login.html");
+				}
+			});
+
+			// Load wishlist items
+			if (typeof loadWishlist === 'function') {
+				loadWishlist();
+			}
+
+			// Update counters
+			let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+			if (typeof updateFavoriteCounter === 'function') {
+				updateFavoriteCounter(wishlist.length);
+			}
+
+			// Update cart count if function exists
+			if (typeof updateCartCount === 'function') {
+				updateCartCount();
+			}
+		});
+	</script>
+
+</body>
+
+</html>

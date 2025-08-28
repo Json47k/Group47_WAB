@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Request Refund - CozaStore</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+	<style>
+		/* Refund page styling to match checkout page */
+		body,
+		.refund-card {
+			font-family: Poppins-Regular, sans-serif;
+		}
+
+		.refund-container {
+			background: #f7f7f7;
+			min-height: 100vh;
+			padding: 20px 0;
+		}
+
+		.refund-card {
+			background: white;
+			border-radius: 0;
+			box-shadow: none;
+			overflow: hidden;
+		}
+
+		.refund-header {
+			background: #dc3545;
+			color: white;
+			padding: 30px;
+			text-align: center;
+		}
+
+		.refund-header h1 {
+			margin: 0;
+			font-size: 2.5rem;
+			font-weight: 300;
+		}
+
+		.refund-header p {
+			margin: 10px 0 0 0;
+			opacity: 0.9;
+		}
+
+		.refund-icon {
+			font-size: 4rem;
+			margin-bottom: 20px;
+		}
+
+		.refund-section {
+			padding: 30px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.refund-section:last-child {
+			border-bottom: none;
+		}
+
+		.section-title {
+			font-size: 1.5rem;
+			color: #333;
+			margin-bottom: 25px;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #dc3545;
+			display: inline-block;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		.form-label {
+			font-weight: 600;
+			color: #555;
+			margin-bottom: 8px;
+			display: block;
+		}
+
+		.form-control {
+			border: 1px solid #e1e5e9;
+			height: 40px;
+			line-height: 1.5;
+			padding: 6px 10px;
+			white-space: normal;
+			overflow: visible;
+			box-sizing: border-box;
+		}
+
+		.form-control:focus {
+			border-color: #dc3545;
+			box-shadow: none;
+			outline: none;
+		}
+
+		.form-control.error {
+			border-color: #e74c3c;
+		}
+
+		.error-message {
+			color: #e74c3c;
+			font-size: 14px;
+			margin-top: 5px;
+			display: none;
+		}
+
+		.order-summary {
+			background: #f8f9fa;
+			border-radius: 0;
+			padding: 20px;
+			margin-bottom: 20px;
+		}
+
+		.summary-row {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid #eee;
+		}
+
+		.summary-row:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+			font-weight: 700;
+			font-size: 1.2rem;
+			color: #dc3545;
+		}
+
+		.btn-refund {
+			background: #dc3545;
+			border: none;
+			color: white;
+			padding: 15px 30px;
+			border-radius: 25px;
+			font-size: 18px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.btn-refund:hover {
+			background: #c82333;
+			transform: none;
+			box-shadow: none;
+		}
+
+		.btn-secondary {
+			background: #6c757d;
+			border: none;
+			color: white;
+			padding: 12px 25px;
+			border-radius: 25px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-right: 15px;
+		}
+
+		.btn-secondary:hover {
+			background: #5a6268;
+		}
+
+		.refund-reason {
+			border: 1px solid #e1e5e9;
+			border-radius: 0;
+			padding: 15px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.refund-reason:hover {
+			border-color: #dc3545;
+		}
+
+		.refund-reason.selected {
+			border-color: #dc3545;
+			background: rgba(220, 53, 69, 0.05);
+		}
+
+		.refund-reason input[type="radio"] {
+			margin-right: 10px;
+		}
+
+		@media (max-width: 768px) {
+			.refund-header h1 {
+				font-size: 2rem;
+			}
+
+			.refund-section {
+				padding: 20px;
+			}
+		}
+	</style>
+</head>
+
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-25">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-25" href="login.html">
+							My Account
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="index.html" class="logo">
+						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="index.html">Home</a>
+							</li>
+
+							<li>
+								<a href="product.html">Shop</a>
+							</li>
+
+							<li>
+								<a href="about.html">About</a>
+							</li>
+
+							<li>
+								<a href="contact.html">Contact</a>
+							</li>
+						</ul>
+					</div>	
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</a>
+						<a href="wishlist.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-wishlist" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</a>
+
+				<a href="wishlist.html" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-15">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-15">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-20" href="login.html">
+							My Account
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+
+				<li>
+					<a href="product.html">Shop</a>
+				</li>
+
+				<li>
+					<a href="about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Refund Container -->
+	<div class="refund-container">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
+					<div class="refund-card">
+						<!-- Refund Header -->
+						<div class="refund-header">
+							<div class="refund-icon">
+								<i class="fa fa-undo"></i>
+							</div>
+							<h1>Request Refund</h1>
+							<p>Please provide details about your refund request</p>
+						</div>
+
+						<form id="refundForm" novalidate>
+							<div class="row">
+								<!-- Left Column - Refund Form -->
+								<div class="col-lg-8">
+									<!-- Order Information -->
+									<div class="refund-section">
+										<h3 class="section-title">Order Information</h3>
+
+										<div class="form-group">
+											<label class="form-label">Order Number *</label>
+											<input type="text" class="form-control" id="orderNumber" name="orderNumber"
+												placeholder="Enter order number (e.g., #ORD-123456)" required>
+											<div class="error-message" id="orderNumberError">Please enter your order
+												number</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Email Address *</label>
+											<input type="email" class="form-control" id="email" name="email" required>
+											<div class="error-message" id="emailError">Please enter a valid email
+												address</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Phone Number *</label>
+											<input type="tel" class="form-control" id="phone" name="phone"
+												placeholder="601X XXX XXXX" required>
+											<div class="error-message" id="phoneError">Please enter a valid phone number
+												in format: 601X XXX XXXX</div>
+										</div>
+									</div>
+
+									<!-- Refund Reason -->
+									<div class="refund-section">
+										<h3 class="section-title">Refund Reason</h3>
+
+										<div class="refund-reason" data-reason="wrong-size">
+											<input type="radio" name="refundReason" id="wrong-size" value="wrong-size"
+												required>
+											<label for="wrong-size">
+												<strong>Wrong Size</strong> - Product doesn't fit as expected
+											</label>
+										</div>
+
+										<div class="refund-reason" data-reason="defective">
+											<input type="radio" name="refundReason" id="defective" value="defective">
+											<label for="defective">
+												<strong>Defective Product</strong> - Product arrived damaged or faulty
+											</label>
+										</div>
+
+										<div class="refund-reason" data-reason="wrong-item">
+											<input type="radio" name="refundReason" id="wrong-item" value="wrong-item">
+											<label for="wrong-item">
+												<strong>Wrong Item</strong> - Received different product than ordered
+											</label>
+										</div>
+
+										<div class="refund-reason" data-reason="not-as-described">
+											<input type="radio" name="refundReason" id="not-as-described"
+												value="not-as-described">
+											<label for="not-as-described">
+												<strong>Not As Described</strong> - Product doesn't match description
+											</label>
+										</div>
+
+										<div class="refund-reason" data-reason="other">
+											<input type="radio" name="refundReason" id="other" value="other">
+											<label for="other">
+												<strong>Other</strong> - Please specify in comments
+											</label>
+										</div>
+									</div>
+
+									<!-- Additional Details -->
+									<div class="refund-section">
+										<h3 class="section-title">Additional Details</h3>
+
+										<div class="form-group">
+											<label class="form-label">Detailed Description *</label>
+											<textarea class="form-control" id="description" name="description" rows="5"
+												placeholder="Please provide detailed information about your refund request..."
+												required></textarea>
+											<div class="error-message" id="descriptionError">Please provide a detailed
+												description</div>
+										</div>
+
+										<div class="form-group">
+											<label class="form-label">Preferred Refund Method</label>
+											<select class="form-control" id="refundMethod" name="refundMethod">
+												<option value="original-payment">Original Payment Method</option>
+												<option value="store-credit">Store Credit</option>
+												<option value="bank-transfer">Bank Transfer</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<!-- Right Column - Order Summary -->
+								<div class="col-lg-4">
+									<div class="refund-section">
+										<h3 class="section-title">Order Summary</h3>
+
+										<div class="order-summary">
+											<div class="summary-row">
+												<span>Order Number:</span>
+												<span id="displayOrderNumber">-</span>
+											</div>
+											<div class="summary-row">
+												<span>Order Date:</span>
+												<span id="displayOrderDate">-</span>
+											</div>
+											<div class="summary-row">
+												<span>Total Amount:</span>
+												<span id="displayTotal">-</span>
+											</div>
+											<div class="summary-row">
+												<span>Refund Amount:</span>
+												<span id="refundAmount">-</span>
+											</div>
+										</div>
+
+										<!-- Action Buttons -->
+										<button type="button" class="btn-secondary" id="backToHome">
+											<i class="fa fa-home"></i> Back to Home
+										</button>
+
+										<button type="submit" class="btn-refund" id="submitRefund">
+											<i class="fa fa-paper-plane"></i> Submit Refund Request
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="women">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="men">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link"
+								data-category="accessories">
+								Accessories
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="order-tracking.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="refund.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Refund
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="checkout.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="help-faq.html" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at Jalan Universiti, Bandar Barat, 31900 Kampar, Perak
+					</p>
+
+					<div class="p-t-27">
+						<a href="https://www.facebook.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://www.instagram.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="https://www.pinterest.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Store Information
+					</h4>
+
+					<div class="stext-107 cl7 size-201">
+						<p><strong>Opening Hours:</strong></p>
+						<p>Mon-Fri: 9AM - 9PM</p>
+						<p>Sat-Sun: 10AM - 8PM</p>
+						<p class="p-t-10"><strong>Contact:</strong></p>
+						<p>Email: wab@gmail.com</p>
+						<p>Phone: 05-468 8888</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/cart.js"></script>
+	<script src="js/wishlist.js"></script>
+
+	<script>
+		// Refund page functionality
+		document.addEventListener('DOMContentLoaded', function () {
+			// Initialize refund page
+			initializeRefund();
+
+			// Setup event listeners
+			setupEventListeners();
+		});
+
+		function initializeRefund() {
+			// Update cart counter
+			updateCartCounter();
+
+			// Load order information if available
+			loadOrderInfo();
+		}
+
+		function setupEventListeners() {
+			// Form validation
+			const form = document.getElementById('refundForm');
+			const inputs = form.querySelectorAll('input[required], textarea[required]');
+
+			inputs.forEach(input => {
+				input.addEventListener('blur', validateField);
+				input.addEventListener('input', clearError);
+			});
+
+			// Refund reason selection
+			const refundReasons = document.querySelectorAll('.refund-reason');
+			refundReasons.forEach(reason => {
+				reason.addEventListener('click', function () {
+					// Remove selected class from all reasons
+					refundReasons.forEach(r => r.classList.remove('selected'));
+					// Add selected class to clicked reason
+					this.classList.add('selected');
+					// Check the radio button
+					const radio = this.querySelector('input[type="radio"]');
+					radio.checked = true;
+				});
+			});
+
+			// Phone number formatting
+			const phoneInput = document.getElementById('phone');
+			if (phoneInput) {
+				phoneInput.addEventListener('input', formatPhoneNumber);
+			}
+
+			// Form submission
+			form.addEventListener('submit', handleRefundSubmission);
+
+			// Back button
+			document.getElementById('backToHome').addEventListener('click', function () {
+				window.location.href = 'index.html';
+			});
+		}
+
+		function loadOrderInfo() {
+			// Get order info from localStorage
+			const orderInfo = JSON.parse(localStorage.getItem('orderInfo')) || {};
+			const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+			const checkoutInfo = JSON.parse(localStorage.getItem('checkoutInfo')) || {};
+
+			// Generate order ID
+			const orderId = Date.now().toString().slice(-6);
+			const orderNumber = `#ORD-${orderId}`;
+
+			// Set order number in form
+			document.getElementById('orderNumber').value = orderNumber;
+
+			// Set email if available
+			if (orderInfo.customerEmail) {
+				document.getElementById('email').value = orderInfo.customerEmail;
+			}
+
+			// Set phone if available
+			if (orderInfo.customerPhone) {
+				document.getElementById('phone').value = orderInfo.customerPhone;
+			}
+
+			// Display order summary
+			document.getElementById('displayOrderNumber').textContent = orderNumber;
+
+			const now = new Date();
+			document.getElementById('displayOrderDate').textContent = now.toLocaleDateString('en-US', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			});
+
+			// Calculate totals
+			const subtotal = cartData.reduce((sum, item) => sum + (item.price * item.qty), 0);
+			const shippingFee = checkoutInfo.shippingFee || 0;
+			const tax = subtotal * 0.06;
+			const total = subtotal + shippingFee + tax;
+
+			document.getElementById('displayTotal').textContent = `RM ${total.toFixed(2)}`;
+			document.getElementById('refundAmount').textContent = `RM ${total.toFixed(2)}`;
+		}
+
+		function formatPhoneNumber(event) {
+			let value = event.target.value.replace(/\D/g, ''); // Remove non-digits
+
+			// Format as 601X XXX XXXX
+			if (value.length > 0) {
+				if (value.startsWith('601')) {
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else if (value.startsWith('60')) {
+					value = '601' + value.substring(2);
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else if (value.startsWith('0')) {
+					value = '601' + value.substring(1);
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				} else {
+					value = '601' + value;
+					if (value.length > 5) {
+						value = value.substring(0, 5) + ' ' + value.substring(5, 8) + ' ' + value.substring(8, 12);
+					}
+				}
+			}
+
+			event.target.value = value;
+		}
+
+		function validateField(event) {
+			const field = event.target;
+			const value = field.value.trim();
+			const errorElement = document.getElementById(field.id + 'Error');
+
+			let isValid = true;
+			let errorMessage = '';
+
+			// Remove error styling
+			field.classList.remove('error');
+			errorElement.style.display = 'none';
+
+			// Validation rules
+			switch (field.id) {
+				case 'orderNumber':
+					if (value.length < 5) {
+						isValid = false;
+						errorMessage = 'Please enter a valid order number';
+					}
+					break;
+				case 'email':
+					const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+					if (!emailRegex.test(value)) {
+						isValid = false;
+						errorMessage = 'Please enter a valid email address';
+					}
+					break;
+				case 'phone':
+					// Accept 601X XXX XXXX or 601XXXXXXXXX (with optional spaces/hyphens)
+					const phoneRegex = /^601\d{1,2}[ -]?\d{3}[ -]?\d{4}$/;
+					if (!phoneRegex.test(value)) {
+						isValid = false;
+						errorMessage = 'Valid formats: 601X XXX XXXX or 601XXXXXXXXX';
+					}
+					break;
+				case 'description':
+					if (value.length < 5) {
+						isValid = false;
+						errorMessage = 'Please provide a brief description (at least 5 characters)';
+					}
+					break;
+			}
+
+			if (!isValid) {
+				field.classList.add('error');
+				errorElement.textContent = errorMessage;
+				errorElement.style.display = 'block';
+			}
+
+			return isValid;
+		}
+
+		function clearError(event) {
+			const field = event.target;
+			const errorElement = document.getElementById(field.id + 'Error');
+
+			field.classList.remove('error');
+			errorElement.style.display = 'none';
+		}
+
+		function handleRefundSubmission(event) {
+			event.preventDefault();
+
+			// Lightweight client-side UX: always show success and redirect
+
+			// Show success immediately and auto-redirect
+			swal({
+				title: 'Refund Request Submitted',
+				text: 'We will get back to you within 3-5 business days.',
+				icon: 'success',
+				buttons: false,
+				timer: 1600
+			});
+			setTimeout(() => {
+				window.location.href = 'index.html';
+			}, 1650);
+		}
+	</script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const loggedInUser = localStorage.getItem("loggedInUser");
+			document.querySelectorAll(".myAccountLink").forEach(link => {
+				if (loggedInUser) {
+					link.setAttribute("href", "customer-loyalty.html");
+				} else {
+					link.setAttribute("href", "login.html");
+				}
+			});
+
+			// Load wishlist items
+			if (typeof loadWishlist === 'function') {
+				loadWishlist();
+			}
+
+			// Update counters
+			let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+			if (typeof updateFavoriteCounter === 'function') {
+				updateFavoriteCounter(wishlist.length);
+			}
+
+			// Update cart count if function exists
+			if (typeof updateCartCount === 'function') {
+				updateCartCount();
+			}
+		});
+	</script>
+
+
+
+</body>
+
+</html>

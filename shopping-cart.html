@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shopping Cart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+	
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-25">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-25" href="login.html">
+							My Account
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="index.html" class="logo">
+						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="index.html">Home</a>
+							</li>
+
+							<li>
+								<a href="product.html">Shop</a>
+							</li>
+
+							<li>
+								<a href="about.html">About</a>
+							</li>
+
+							<li>
+								<a href="contact.html">Contact</a>
+							</li>
+						</ul>
+					</div>	
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</a>
+						<a href="wishlist.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-wishlist" data-notify="0">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</a>
+					</div>
+				</nav>
+			</div>	
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<a href="shopping-cart.html" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</a>
+
+				<a href="wishlist.html" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over RM100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="order-tracking.html" class="flex-c-m trans-04 p-lr-15">
+							<i class="fa fa-truck" style="margin-right:4px"></i> Track Order
+						</a>
+						<a href="help-faq.html" class="flex-c-m trans-04 p-lr-15">
+							Help & FAQs
+						</a>
+
+						<a class="myAccountLink flex-c-m trans-04 p-lr-20" href="login.html">
+							My Account
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+
+				<li>
+					<a href="product.html">Shop</a>
+				</li>
+
+				<li>
+					<a href="about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Shopping Cart
+			</span>
+		</div>
+	</div>
+
+	<!-- Shopping Cart -->
+	<form class="bg0 p-t-75 p-b-85">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								<tr class="table_head">
+									<th class="column-1">Product</th>
+									<th class="column-2"></th>
+									<th class="column-3">Price</th>
+									<th class="column-4">Quantity</th>
+									<th class="column-5">Total</th>
+								</tr>
+
+								<tbody id="cartItemList"></tbody>
+							</table>
+						</div>
+
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							<div class="flex-w flex-m m-r-20 m-tb-5">
+								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
+									
+								<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+									Apply coupon
+								</div>
+							</div>
+
+							<!-- Cart updates automatically - no need for manual update button -->
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+						<h4 class="mtext-109 cl2 p-b-30">
+							Cart Totals
+						</h4>
+
+						<div class="flex-w flex-t bor12 p-b-13">
+							<div class="size-208">
+								<span class="stext-110 cl2">
+									Subtotal:
+								</span>
+							</div>
+
+							<div class="size-209">
+								<span class="mtext-110 cl2" id="subtotalPrice">
+									RM0.00
+								</span>
+							</div>
+						</div>
+
+						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+							<div class="size-208 w-full-ssm">
+								<span class="stext-110 cl2">
+									Shipping:
+								</span>
+							</div>
+
+							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+								<p class="stext-111 cl6 p-t-2">
+									There are no shipping methods available. Please double check your address, or contact us if you need any help.
+								</p>
+								
+								<div class="p-t-15">
+									<span class="stext-112 cl8">
+										Calculate Shipping
+									</span>
+
+									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+        								<select class="js-select2" name="time" id="regionSelect">
+    								        <option>Select ...</option>
+    								        <option value="west-malaysia">West Malaysia</option>
+    								        <option value="east-malaysia">East Malaysia</option>
+    								    </select>
+   									    <div class="dropDownSelect2"></div>
+    								</div>
+
+    								<!-- State and Postcode Inputs -->
+    								<div class="bor8 bg0 m-b-12">
+    								    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State / country" id="state">
+    								</div>
+
+    								<div class="bor8 bg0 m-b-22">
+    								    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip" id="postcode">
+    								</div>
+
+    								<!-- Update Totals Button for shipping fee updates -->
+    								<div class="flex-w">
+        								<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer" id="updateTotals">
+       	    								Update Totals
+        								</div>
+    								</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="flex-w flex-t p-t-27 p-b-33">
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Total:
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2" id="displayTotal">
+									RM0.00
+								</span>
+							</div>
+						</div>
+
+						<button type="button" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="proceedToCheckout">
+							Proceed to Checkout
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Categories
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link" data-category="women">
+								Women
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link" data-category="men">
+								Men
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="product.html" class="stext-107 cl7 hov-cl1 trans-04 category-link" data-category="accessories">
+								Accessories
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Help
+					</h4>
+
+					<ul>
+						<li class="p-b-10">
+							<a href="order-tracking.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Track Order
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="refund.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Refund
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="checkout.html" class="stext-107 cl7 hov-cl1 trans-04">
+								Shipping
+							</a>
+						</li>
+
+						<li class="p-b-10">
+							<a href="help-faq.html" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQs
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						GET IN TOUCH
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						Any questions? Let us know in store at Jalan Universiti, Bandar Barat, 31900 Kampar, Perak
+					</p>
+
+					<div class="p-t-27">
+						<a href="https://www.facebook.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="https://www.instagram.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="https://www.pinterest.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						Store Information
+					</h4>
+
+					<div class="stext-107 cl7 size-201">
+						<p><strong>Opening Hours:</strong></p>
+						<p>Mon-Fri: 9AM - 9PM</p>
+						<p>Sat-Sun: 10AM - 8PM</p>
+						<p class="p-t-10"><strong>Contact:</strong></p>
+						<p>Email: wab@gmail.com</p>
+						<p>Phone: 05-468 8888</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="shopping-cart.html" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="js/wishlist.js"></script>
+	
+	<!-- Cart Functionality Script -->
+	<script>
+		// Global variables
+		let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+		const shippingRates = {"west-malaysia":7,"east-malaysia":12};
+
+		// Update cart counter in header
+		function updateCartCounter() {
+			const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+			const totalItems = cartItems.reduce((total, item) => total + item.qty, 0);
+			
+			// Update both desktop and mobile cart icons
+			document.querySelectorAll('.icon-header-noti.js-show-cart').forEach(el => {
+				el.setAttribute('data-notify', totalItems);
+			});
+		}
+
+		// Global helper functions for cart operations
+		function updateQuantity(displayIndex, change) {
+			let cart = JSON.parse(localStorage.getItem("cart")) || [];
+			// Get the actual cart index from the filtered items
+			const validItems = cart.filter(item => item.qty > 0);
+			if (displayIndex >= 0 && displayIndex < validItems.length) {
+				const itemToUpdate = validItems[displayIndex];
+				const actualIndex = cart.findIndex(item => item.id === itemToUpdate.id);
+				
+				if (actualIndex >= 0) {
+					const newQty = cart[actualIndex].qty + change;
+					if (newQty <= 0) {
+						// Remove item if quantity reaches 0
+						cart.splice(actualIndex, 1);
+					} else {
+						cart[actualIndex].qty = newQty;
+					}
+					localStorage.setItem("cart", JSON.stringify(cart));
+					cartData = cart; // Update local cart data
+					renderCartItems();
+					updateTotal();
+					updateCartCounter(); // Update header cart counter
+				}
+			}
+		}
+
+		function updateQuantityInput(displayIndex, newValue) {
+			let cart = JSON.parse(localStorage.getItem("cart")) || [];
+			// Get the actual cart index from the filtered items
+			const validItems = cart.filter(item => item.qty > 0);
+			if (displayIndex >= 0 && displayIndex < validItems.length) {
+				const itemToUpdate = validItems[displayIndex];
+				const actualIndex = cart.findIndex(item => item.id === itemToUpdate.id);
+				
+				if (actualIndex >= 0) {
+					const newQty = parseInt(newValue);
+					if (newQty <= 0) {
+						// Remove item if quantity reaches 0
+						cart.splice(actualIndex, 1);
+					} else {
+						cart[actualIndex].qty = newQty;
+					}
+					localStorage.setItem("cart", JSON.stringify(cart));
+					cartData = cart; // Update local cart data
+					renderCartItems();
+					updateTotal();
+					updateCartCounter(); // Update header cart counter
+				}
+			}
+		}
+
+		// Global function to render cart items
+		function renderCartItems() {
+			const cartItemList = document.getElementById("cartItemList");
+			const subtotalPriceElement = document.getElementById("subtotalPrice");
+			
+			if (!cartItemList) return 0;
+			
+			cartItemList.innerHTML = ""; // Clear existing items
+			let total = 0;
+
+			// Filter out items with quantity 0 or less
+			const validItems = cartData.filter(item => item.qty > 0);
+
+			if (validItems.length === 0) {
+				// Show empty cart message
+				const emptyRow = document.createElement("tr");
+				emptyRow.innerHTML = `
+					<td colspan="5" class="text-center p-t-30 p-b-30">
+						<div class="stext-107 cl6">
+							<i class="fa fa-shopping-cart" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
+							<p class="mtext-107 cl2">Your cart is empty</p>
+							<p class="stext-107 cl6">Add some products to get started!</p>
+							<a href="product.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-t-20">
+								Continue Shopping
+							</a>
+						</div>
+					</td>
+				`;
+				cartItemList.appendChild(emptyRow);
+			} else {
+				validItems.forEach((item, index) => {
+					const row = document.createElement("tr");
+					row.classList.add("table_row");
+					row.innerHTML =`
+						<td class="column-1">
+							<div class="how-itemcart1">
+								<img src="${item.img}" alt="IMG">
+							</div>
+						</td>
+						<td class="column-2">${item.name}</td>
+						<td class="column-3">RM ${item.price.toFixed(2)}</td>
+						<td class="column-4">
+							<div class="wrap-num-product flex-w m-l-auto m-r-0">
+								<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" onclick="updateQuantity(${index}, -1)">
+									<i class="fs-16 zmdi zmdi-minus"></i>
+								</div>
+								<input class="mtext-104 cl3 txt-center num-product" type="number" value="${item.qty}" min="1" data-index="${index}" onchange="updateQuantityInput(${index}, this.value)">
+								<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" onclick="updateQuantity(${index}, 1)">
+									<i class="fs-16 zmdi zmdi-plus"></i>
+								</div>
+							</div>
+						</td>
+						<td class="column-5">RM ${(item.price * item.qty).toFixed(2)}</td>
+					`;
+					cartItemList.appendChild(row);
+					total += item.price * item.qty; // Add item total to overall total
+				});
+			}
+
+			if (subtotalPriceElement) {
+				subtotalPriceElement.innerText = `RM ${total.toFixed(2)}`;
+			}
+			return total;
+		}
+
+		// Global function to update total
+		function updateTotal() {
+			const regionSelect = document.getElementById("regionSelect");
+			const totalPriceElement = document.getElementById("displayTotal");
+			
+			if (!regionSelect || !totalPriceElement) return;
+			
+			const selectedRegion = regionSelect.value;
+			let shippingFee = 0;
+
+			if (selectedRegion === "west-malaysia") {
+				shippingFee = shippingRates["west-malaysia"];
+			} else if (selectedRegion === "east-malaysia") {
+				shippingFee = shippingRates["east-malaysia"];
+			}
+
+			const subtotal = renderCartItems();
+			const totalPrice = subtotal + shippingFee;
+
+			totalPriceElement.innerText = `RM ${totalPrice.toFixed(2)}`;
+		}
+
+		// Function to clean cart data (remove items with 0 quantity)
+		function cleanCartData() {
+			let cart = JSON.parse(localStorage.getItem("cart")) || [];
+			const cleanedCart = cart.filter(item => item.qty > 0);
+			if (cleanedCart.length !== cart.length) {
+				localStorage.setItem("cart", JSON.stringify(cleanedCart));
+				cartData = cleanedCart;
+			}
+		}
+
+		// Function to refresh cart display
+		function refreshCartDisplay() {
+			const newCartData = JSON.parse(localStorage.getItem("cart")) || [];
+			if (JSON.stringify(newCartData) !== JSON.stringify(cartData)) {
+				cartData = newCartData;
+				cleanCartData(); // Clean up 0 quantity items
+				renderCartItems();
+				updateTotal();
+			}
+		}
+
+		// Function to initialize cart page immediately
+		function initializeCartPage() {
+			cleanCartData();
+			renderCartItems();
+			updateTotal();
+			updateCartCounter();
+		}
+
+		// Document ready function
+		document.addEventListener("DOMContentLoaded", function () {
+			// Select elements
+			const regionSelect = document.getElementById("regionSelect");
+			const updateTotalsButton = document.getElementById("updateTotals");
+			const proceedToCheckoutButton = document.getElementById("proceedToCheckout");
+
+			// Refresh cart data from localStorage
+			cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+			// Event listener for "Update Totals" button for shipping fee updates
+			if (updateTotalsButton) {
+				updateTotalsButton.addEventListener("click", updateTotal);
+			}
+
+			// Event listener for "Proceed to Checkout" button
+			if (proceedToCheckoutButton) {
+				proceedToCheckoutButton.addEventListener("click", function(event) {
+					event.preventDefault();
+					window.location.href = "checkout.html";
+				});
+			}
+
+			// Initialize immediately
+			initializeCartPage();
+
+			// Refresh cart display every 500ms to catch new items immediately
+			setInterval(refreshCartDisplay, 500);
+
+			// Also refresh when page becomes visible (user switches back to tab)
+			document.addEventListener('visibilitychange', function() {
+				if (!document.hidden) {
+					refreshCartDisplay();
+				}
+			});
+
+			// Force immediate refresh on page load with multiple attempts
+			setTimeout(function() {
+				initializeCartPage();
+			}, 50);
+		
+			setTimeout(function() {
+				initializeCartPage();
+			}, 200);
+		
+			setTimeout(function() {
+				initializeCartPage();
+			}, 500);
+		});
+	</script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const loggedInUser = localStorage.getItem("loggedInUser");
+			document.querySelectorAll(".myAccountLink").forEach(link => {
+				if (loggedInUser) {
+					link.setAttribute("href", "customer-loyalty.html");
+				} else {
+					link.setAttribute("href", "login.html");
+				}
+			});
+
+			// Load wishlist items
+			if (typeof loadWishlist === 'function') {
+				loadWishlist();
+			}
+
+			// Update counters
+			let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+			if (typeof updateFavoriteCounter === 'function') {
+				updateFavoriteCounter(wishlist.length);
+			}
+
+			// Update cart count if function exists
+			if (typeof updateCartCount === 'function') {
+				updateCartCount();
+			}
+		});
+	</script>
+
+</body>
+</html>
